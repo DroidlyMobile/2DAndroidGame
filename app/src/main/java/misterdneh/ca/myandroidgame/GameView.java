@@ -12,6 +12,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public GameThread gameThread;
     private Paint textpaint;
     public String buttonpressed = "none";
+    public boolean upPressed,downPressed,leftPressed,rightPressed = false;
 
     public GameView(Context context) {
         super(context);

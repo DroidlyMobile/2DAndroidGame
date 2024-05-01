@@ -97,13 +97,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         int code = event.getKeyCode();
         if (code == KeyEvent.KEYCODE_DPAD_DOWN){
-            gameView.buttonpressed = "DOWN";
+            gameView.downPressed = true;
         }else if (code == KeyEvent.KEYCODE_DPAD_UP) {
-            gameView.buttonpressed = "UP";
+            gameView.upPressed = true;
         }else if (code == KeyEvent.KEYCODE_DPAD_RIGHT) {
-            gameView.buttonpressed = "LEFT";
+            gameView.rightPressed = true;
         }else if (code == KeyEvent.KEYCODE_DPAD_LEFT) {
-            gameView.buttonpressed = "RIGHT";
+            gameView.leftPressed = true;
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -112,13 +112,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         int code = event.getKeyCode();
         if (code == KeyEvent.KEYCODE_DPAD_DOWN){
-            gameView.buttonpressed = "none";
+            gameView.downPressed = false;
         }else if (code == KeyEvent.KEYCODE_DPAD_UP) {
-            gameView.buttonpressed = "none";
+            gameView.upPressed = false;
         }else if (code == KeyEvent.KEYCODE_DPAD_RIGHT) {
-            gameView.buttonpressed = "none";
+            gameView.rightPressed = false;
         }else if (code == KeyEvent.KEYCODE_DPAD_LEFT) {
-            gameView.buttonpressed = "none";
+            gameView.leftPressed = false;
         }
         return super.onKeyUp(keyCode, event);
     }
