@@ -11,6 +11,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import misterdneh.ca.myandroidgame.entity.Player;
+import misterdneh.ca.myandroidgame.world.Tilemanager;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -24,7 +25,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public int playerWidth = 160;
     public int playerHeight = 160;
     public int screenWidth,screenHeight = 0;
+    public int tileSize = 0;
     public Player player;
+    public Tilemanager tilemanager;
 
     public GameView(Context context) {
         super(context);
@@ -37,7 +40,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         backgroundpaint.setColor(Color.BLUE);
         screenWidth = getDisplayWidthPixels(context);
         screenHeight = getDisplayHeightPixels(context);
+        tileSize = 160;
         player = new Player(this);
+        tilemanager = new Tilemanager(this);
     }
 
 
@@ -48,6 +53,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         canvas.drawRect(0,0,screenWidth, screenHeight,backgroundpaint);
         canvas.drawText("FPS " + String.valueOf(getDisplayHeightPixels(getContext())), 200, 200, textpaint);
         canvas.drawRect(playerX,playerY,playerX + playerWidth, playerY + playerHeight,textpaint);
+        tilemanager.drawTiles(canvas);
         player.draw(canvas);
     }
 

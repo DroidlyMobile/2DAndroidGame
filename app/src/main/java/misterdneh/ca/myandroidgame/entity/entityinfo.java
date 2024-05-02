@@ -13,6 +13,7 @@ public class entityinfo {
     public int walkAnimNum = 1;
     public int walkAnimSpeed = 0;
     public int walkAnimCount = 0;
+    public int screenX,screenY = 0;
 
     public String entityDirection = "none";
     public String entityDefaultDirection = "down";

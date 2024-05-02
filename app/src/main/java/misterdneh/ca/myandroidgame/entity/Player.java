@@ -18,6 +18,8 @@ public class Player extends entityinfo{
         entitySpriteSheet(R.drawable.playwalkingspritesheet,entityWalking);
         defaultEntityImage = entityWalking[0];
         entitySpeed = 8;
+        screenX = gameView.screenWidth/2 - entityWidth/2;
+        screenY = gameView.screenHeight/2 - entityHeight/2;
     }
     public void update(){
         updateXY();
@@ -25,7 +27,7 @@ public class Player extends entityinfo{
     }
     public void draw(Canvas canvas){
         if (defaultEntityImage != null) {
-            canvas.drawBitmap(defaultEntityImage, posX, posY, null);
+            canvas.drawBitmap(defaultEntityImage, screenX, screenY, null);
         }
     }
 
