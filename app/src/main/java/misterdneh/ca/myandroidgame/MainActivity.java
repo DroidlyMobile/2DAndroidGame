@@ -6,6 +6,7 @@ import static misterdneh.ca.myandroidgame.Dpad.LEFT;
 import static misterdneh.ca.myandroidgame.Dpad.RIGHT;
 import static misterdneh.ca.myandroidgame.Dpad.UP;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.InputDevice;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         gameView = new GameView(this);
         setContentView(gameView);
         getGameControllerIds();
+        fullscreen();
     }
 
     @Override
@@ -68,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
     public void _setViewWidthHeight(View _view, int _width, int _height) {
         _view.getLayoutParams().width = _width;
         _view.getLayoutParams().height = _height;
+
     }
+
 
     public ArrayList<Integer> getGameControllerIds() {
         ArrayList<Integer> gameControllerDeviceIds = new ArrayList<Integer>();
