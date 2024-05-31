@@ -14,7 +14,11 @@ public class tileinfo {
     public GameView gameView;
     public int[][] worldTileNum;
     public int tileNum = 0;
+    public int tileNum2 = 0;
     public int tileWidth,tileHeight = 160;
+    public int tileAnimCount = 0;
+    public int tileAnimNum = 1;
+
 
     public Bitmap defaultTileImg = null;
     public Bitmap[] tileImgs = new Bitmap[1000];

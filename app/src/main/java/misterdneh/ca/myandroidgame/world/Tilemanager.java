@@ -1,5 +1,6 @@
 package misterdneh.ca.myandroidgame.world;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 import misterdneh.ca.myandroidgame.GameView;
@@ -55,6 +56,67 @@ public class Tilemanager extends tileinfo{
             // }
         }
 
+    }
+
+    public void drawAllAnimatedTiles(Canvas canvas){
+        //Animated Tiles
+        Bitmap animatedTilewater = null;
+        Bitmap animatedTileflowers = null;
+        tileAnimCount ++;
+        if(tileAnimCount > 32){
+
+            if(tileAnimNum == 1){
+                tileAnimNum = 2;
+            }else
+            if(tileAnimNum == 2){
+                tileAnimNum = 3;
+            }else
+            if(tileAnimNum == 3){
+                tileAnimNum = 4;
+            }else
+            if(tileAnimNum == 4){
+                tileAnimNum = 1;
+            }
+            tileAnimCount = 0;
+        }
+
+        if (tileAnimNum == 1) {
+            animatedTilewater = tiles[10].defaultTileImg;
+            animatedTileflowers = tiles[6].defaultTileImg;
+        }
+
+        int tileCol = 0;
+        int tileRow = 0;
+
+        while (tileCol < 25 && tileRow < 25){
+            tileNum2 = worldTileNum[tileCol][tileRow];//Gets the tileNum at the XY position from the txt data
+            int tilePosX = tileCol * gameView.tileSize;//Sets the tile at the position X in the world times the scaled tilesize 160 in example
+            int tilePosY = tileRow * gameView.tileSize;//Sets position Y times scaled tilesize
+            int tileScreenX = tilePosX - gameView.player.posX + gameView.player.screenX;
+            int tileScreenY = tilePosY - gameView.player.posY + gameView.player.screenY;
+
+            if(tileScreenX > -gameView.tileSize
+                    && tileScreenY > -gameView.tileSize
+                    && tileScreenX < gameView.screenWidth + (gameView.tileSize *2)
+                    && tileScreenY < (gameView.screenHeight + gameView.tileSize )){
+
+                if (tileNum2 == 10){
+                    if (animatedTilewater != null) {
+                        canvas.drawBitmap(animatedTilewater, tileScreenX, tileScreenY, null);
+                    }
+                }
+                if (tileNum2 == 6){
+                    if (animatedTileflowers != null) {
+                        canvas.drawBitmap(animatedTileflowers, tileScreenX, tileScreenY, null);
+                    }
+                }
+            }
+            tileCol ++;
+            if (tileCol == 25){//Check if tileCol reaches the end in this case 100 tiles then resets back to 0 then increases rows
+                tileCol = 0;
+                tileRow++;
+            }
+        }
     }
 
 

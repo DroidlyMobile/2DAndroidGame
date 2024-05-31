@@ -43,7 +43,9 @@ public class Player extends entityinfo{
         }else if (gameView.leftPressed){
             entityDirection = "left";
             entityDefaultDirection = "left";
-            posX -= entitySpeed;
+            if (posX>0) {
+                posX -= entitySpeed;
+            }
         }else if (gameView.rightPressed){
             entityDirection = "right";
             entityDefaultDirection = "right";

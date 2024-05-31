@@ -29,7 +29,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public Player player;
     public Tilemanager tilemanager;
 
-    public GameView(Context context) {
+    public GameView(Context context,int screenWidth,int screenHeight) {
         super(context);
         getHolder().addCallback(this);
         gameThread = new GameThread(getHolder(), this);
@@ -38,20 +38,17 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         textpaint.setColor(Color.WHITE);
         textpaint.setTextSize(60);
         backgroundpaint.setColor(Color.BLUE);
-        screenWidth = getDisplayWidthPixels(context);
-        screenHeight = getDisplayHeightPixels(context);
+        this.screenWidth = screenWidth;
+        this.screenHeight = screenHeight + getNavigationBarHeight();
         tileSize = 160;
         player = new Player(this);
         tilemanager = new Tilemanager(this);
     }
-
-
-
     public void draw (Canvas canvas) {
         // Render the game here
         super.draw(canvas);
         canvas.drawRect(0,0,screenWidth, screenHeight,backgroundpaint);
-        canvas.drawText("FPS " + String.valueOf(getDisplayHeightPixels(getContext())), 200, 200, textpaint);
+        //canvas.drawText("FPS " + String.valueOf(getNavigationBarHeight()), 200, 200, textpaint);
         canvas.drawRect(playerX,playerY,playerX + playerWidth, playerY + playerHeight,textpaint);
         tilemanager.drawTiles(canvas);
         player.draw(canvas);
@@ -62,17 +59,17 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         player.update();
     }
     public int getDisplayWidthPixels(Context _context){
-        return _context.getResources().getDisplayMetrics().widthPixels;
+        return _context.getResources().getDisplayMetrics().widthPixels + getNavigationBarHeight();
     }
     public int getDisplayHeightPixels(Context _context){
-        return _context.getResources().getDisplayMetrics().heightPixels + getNavigationBarHeight();
+        return _context.getResources().getDisplayMetrics().heightPixels + getNavigationBarHeight() ;
     }
-    private int getNavigationBarHeight() {
+    public int getNavigationBarHeight() {
         DisplayMetrics metrics = new DisplayMetrics();
         ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int usableHeight = metrics.heightPixels;
+        int usableHeight = metrics.widthPixels;
         ((Activity) getContext()).getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
-        int realHeight = metrics.heightPixels;
+        int realHeight = metrics.widthPixels;
         if (realHeight > usableHeight) {
             return realHeight - usableHeight;
         }
