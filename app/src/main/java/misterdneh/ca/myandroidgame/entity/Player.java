@@ -19,7 +19,7 @@ public class Player extends entityinfo{
         defaultEntityImage = entityWalking[0];
         entitySpeed = 8;
         screenX = gameView.screenWidth/2 - entityWidth/2;
-        screenY = gameView.screenHeight/2 - entityHeight/2;
+        screenY = gameView.screenHeight/2 - entityHeight;
     }
     public void update(){
         updateXY();

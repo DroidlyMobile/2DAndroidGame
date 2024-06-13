@@ -132,21 +132,6 @@ public class DualScreenPresentation extends Activity {
             mPresentation = null;
         }
     }
-
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        // Inflate the menu and configure the media router action provider.
-        getMenuInflater().inflate(R.menu.presentation_with_media_router_menu, menu);
-
-        MenuItem mediaRouteMenuItem = menu.findItem(R.id.menu_media_route);
-        MediaRouteActionProvider mediaRouteActionProvider =
-                (MediaRouteActionProvider)mediaRouteMenuItem.getActionProvider();
-        mediaRouteActionProvider.setRouteTypes(MediaRouter.ROUTE_TYPE_LIVE_VIDEO);
-        // Return true to show the menu.
-        return true;
-    }*/
-
     private void updatePresentation() {
         // Get the current route and its presentation display.
         MediaRouter.RouteInfo route = mMediaRouter.getSelectedRoute(
@@ -263,13 +248,13 @@ public class DualScreenPresentation extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         int code = event.getKeyCode();
         if (code == KeyEvent.KEYCODE_DPAD_DOWN){
-            gameView.downPressed = true;
+            mPresentation.gameView.downPressed = true;
         }else if (code == KeyEvent.KEYCODE_DPAD_UP) {
-            gameView.upPressed = true;
+            mPresentation.gameView.upPressed = true;
         }else if (code == KeyEvent.KEYCODE_DPAD_RIGHT) {
-            gameView.rightPressed = true;
+            mPresentation.gameView.rightPressed = true;
         }else if (code == KeyEvent.KEYCODE_DPAD_LEFT) {
-            gameView.leftPressed = true;
+            mPresentation.gameView.leftPressed = true;
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -278,13 +263,13 @@ public class DualScreenPresentation extends Activity {
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         int code = event.getKeyCode();
         if (code == KeyEvent.KEYCODE_DPAD_DOWN){
-            gameView.downPressed = false;
+            mPresentation.gameView.downPressed = false;
         }else if (code == KeyEvent.KEYCODE_DPAD_UP) {
-            gameView.upPressed = false;
+            mPresentation.gameView.upPressed = false;
         }else if (code == KeyEvent.KEYCODE_DPAD_RIGHT) {
-            gameView.rightPressed = false;
+            mPresentation.gameView.rightPressed = false;
         }else if (code == KeyEvent.KEYCODE_DPAD_LEFT) {
-            gameView.leftPressed = false;
+            mPresentation.gameView.leftPressed = false;
         }
         return super.onKeyUp(keyCode, event);
     }
